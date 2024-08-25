@@ -23,29 +23,7 @@ while true; do
       case $opt in
           "Установить ноду Morph")
               echo "Начинаем установку ноды Morph..."
-
-              # Обновление системы и установка необходимых пакетов
-              echo "Обновление системы и установка необходимых пакетов..."
-              sudo apt update && sudo apt upgrade -y
-              sudo apt install curl git jq lz4 build-essential unzip make lz4 gcc jq ncdu tmux cmake clang pkg-config libssl-dev python3-pip protobuf-compiler bc -y
-
-              # Установка GO
-              echo "Установка Go..."
-              sudo rm -rf /usr/local/go
-              curl -Ls https://go.dev/dl/go1.22.2.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
-              eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
-              eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
-              go version
-
-              # Установка Docker и Docker Compose
-              echo "Установка Docker и Docker Compose..."
-              sudo apt install -y ca-certificates curl gnupg lsb-release
-              echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-              sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
-              sudo usermod -aG docker $USER
-              newgrp docker
-              sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
+            
 
               # Установка Geth
               echo "Установка Geth..."
